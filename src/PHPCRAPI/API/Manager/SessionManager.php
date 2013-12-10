@@ -9,7 +9,20 @@
 
 namespace PHPCRAPI\API\Manager;
 
+use PHPCR\AccessDeniedException as PHPCRAccessDeniedException;
 use PHPCR\RepositoryException;
+use PHPCR\Version\VersionException;
+use PHPCR\Lock\LockException;
+use PHPCR\NodeType\ConstraintViolationException;
+use PHPCR\NodeType\NoSuchNodeTypeException;
+use PHPCR\ReferentialIntegrityException;
+use PHPCR\InvalidItemStateException;
+use PHPCR\ItemExistsException;
+use PHPCR\PathNotFoundException;
+use PHPCRAPI\API\Exception\ResourceNotFoundException;
+use PHPCRAPI\API\Exception\ResourceLockedException;
+use PHPCRAPI\API\Exception\ResourceConstraintViolationException;
+use PHPCRAPI\API\Exception\AccessDeniedException;
 use PHPCRAPI\API\Exception\InternalServerErrorException;
 use PHPCRAPI\PHPCR\Session;
 
@@ -44,7 +57,13 @@ class SessionManager
 
     public function getNode($path)
     {
-        return new NodeManager($this->session->getNode($path), $this);
+        try{
+            return new NodeManager($this->session->getNode($path), $this);
+        }catch(PathNotFoundException $e){
+            throw new ResourceNotFoundException('No accessible node is found at the specified path');
+        }catch(RepositoryException $e){
+            throw new InternalServerErrorException($e->getMessage());
+        }
     }
 
     public function nodeExists($path)
@@ -57,11 +76,43 @@ class SessionManager
     }
     
     public function getRootNode()
-    {
-        return new NodeManager($this->session->getRootNode(), $this);
+    {   
+        try{
+            return new NodeManager($this->session->getRootNode(), $this);
+        }catch(RepositoryException $e){
+            throw new InternalServerErrorException($e->getMessage());
+        }
     }
 
     public function save(){
-        return $this->session->save();
+        try{
+            return $this->session->save();
+        }catch(PHPCRAccessDeniedException $e){
+            throw new AccessDeniedException('Any of the changes to be persisted would violate the access privileges of the 
+                this Session. Also thrown if any of the changes to be persisted would cause the removal of a node that is 
+                currently referenced by a REFERENCE property that this Session does not have read access to');
+        }catch(ItemExistsException $e){
+            throw new InternalServerErrorException('Any of the changes to be persisted would be prevented by the 
+                presence of an already existing item in the workspace');
+        }catch(ConstraintViolationException $e){
+            throw new ResourceConstraintViolationException('Any of the changes to be persisted would be prevented by the 
+                presence of an already existing item in the workspace');
+        }catch(InvalidItemStateException $e){
+            throw new InternalServerErrorException('Any of the changes to be persisted conflicts with a change already 
+                persisted through another session and the implementation is such that this conflict can only be detected 
+                at save-time and therefore was not detected earlier, at change-time');
+        }catch(ReferentialIntegrityException $e){
+            throw new ResourceConstraintViolationException('Any of the changes to be persisted would cause the removal of a 
+                node that is currently referenced by a REFERENCE property that this Session has read access to');
+        }catch(VersionException $e){
+            throw new InternalServerErrorException('The save would make a result in a change to persistent storage that would 
+                violate the read-only status of a checked-in node');
+        }catch(LockException $e){
+            throw new ResourceLockedException('The save would result in a change to persistent storage that would violate a lock');
+        }catch(NoSuchNodeTypeException $e){
+            throw new ResourceNotFoundException('The save would result in the addition of a node with an unrecognized node type');
+        }catch(RepositoryException $e){
+            throw new InternalServerErrorException($e->getMessage());
+        }
     }
 }

@@ -15,6 +15,7 @@ use PHPCRAPI\API\Exception\InternalServerErrorException;
 use PHPCRAPI\API\Exception\NotSupportedOperationException;
 use PHPCRAPI\API\Exception\ResourceNotFoundException;
 use PHPCR\RepositoryException;
+use PHPCR\NoSuchWorkspaceException;
 use PHPCR\UnsupportedRepositoryOperationException;
 
 /**
@@ -61,7 +62,7 @@ class WorkspaceManager
         } catch (NoSuchWorkspaceException $e) {
             throw new ResourceNotFoundException('The source workspace does not exist');
         } catch (RepositoryException $e) {
-            throw new ResourceNotFoundException($e->getMessage());
+            throw new InternalServerErrorException($e->getMessage());
         }
     }
 
@@ -80,7 +81,7 @@ class WorkspaceManager
         } catch (NoSuchWorkspaceException $e) {
             throw new ResourceNotFoundException('The workspace does not exist');
         } catch (RepositoryException $e) {
-            throw new ResourceNotFoundException($e->getMessage());
+            throw new InternalServerErrorException($e->getMessage());
         }
     }
 }

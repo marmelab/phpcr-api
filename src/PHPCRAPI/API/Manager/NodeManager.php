@@ -12,9 +12,17 @@ namespace PHPCRAPI\API\Manager;
 use PHPCR\ItemNotFoundException;
 use PHPCR\AccessDeniedException as PHPCRAccessDeniedException;
 use PHPCR\RepositoryException;
+use PHPCR\UnsupportedRepositoryOperationException;
+use PHPCR\Version\VersionException;
+use PHPCR\Lock\LockException;
+use PHPCR\NodeType\ConstraintViolationException;
+use PHPCR\ValueFormatException;
 use PHPCRAPI\API\Exception\ResourceNotFoundException;
+use PHPCRAPI\API\Exception\ResourceLockedException;
+use PHPCRAPI\API\Exception\ResourceConstraintViolationException;
 use PHPCRAPI\API\Exception\AccessDeniedException;
 use PHPCRAPI\API\Exception\InternalServerErrorException;
+use PHPCRAPI\API\Exception\NotSupportedOperationException;
 use PHPCRAPI\PHPCR\Node;
 
 /**
@@ -120,7 +128,7 @@ class NodeManager
                 read access to that REFERENCE property or if the current Session does not have sufficient privileges to 
                 remove the property');
         }catch(RepositoryException $e){
-            throw new ResourceNotFoundException($e->getMessage());
+            throw new InternalServerErrorException($e->getMessage());
         }
     }
 
@@ -143,13 +151,11 @@ class NodeManager
             throw new ResourceLockedException('A lock prevents the setting of the property and this implementation performs this validation immediately instead of waiting until save');
         }catch(ConstraintViolationException $e){
             throw new ResourceConstraintViolationException($e->getMessage());
-        }catch(RepositoryException $e){
-            throw new ResourceNotFoundException($e->getMessage());
         }catch(VersionException $e){
             throw new InternalServerErrorException('This node is versionable and checked-in or is non-versionable but its nearest 
                 versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting 
                 until save');
-        }catch(\InvalidArgumentException $e){
+        }catch(RepositoryException $e){
             throw new InternalServerErrorException($e->getMessage());
         }
     }
