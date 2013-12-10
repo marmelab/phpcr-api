@@ -44,7 +44,7 @@ class SessionManager
 
     public function getNode($path)
     {
-        return new NodeManager($this->session->getNode($path));
+        return new NodeManager($this->session->getNode($path), $this);
     }
 
     public function nodeExists($path)
@@ -55,8 +55,13 @@ class SessionManager
             throw new InternalServerErrorException($e->getMessage());
         }
     }
+    
     public function getRootNode()
     {
-        return new NodeManager($this->session->getRootNode());
+        return new NodeManager($this->session->getRootNode(), $this);
+    }
+
+    public function save(){
+        return $this->session->save();
     }
 }
