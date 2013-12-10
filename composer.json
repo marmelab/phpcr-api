@@ -1,0 +1,21 @@
+{
+    "name": "marmelab/phpcr-api",
+    "description": "PHPCR API provides an API to explore PHPCR repositories.",
+    "license": "MIT",
+    "version": "0.1",
+    "require": {
+        "symfony/yaml": "dev-master",
+        "jackalope/jackalope-jackrabbit": "dev-master"
+    },
+
+    "autoload": {
+        "psr-0": {"PHPCRAPI\\": "src/"}
+    },
+
+    "target-dir": "marmelab/phpcr-api",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1"
+        }
+    }
+}
