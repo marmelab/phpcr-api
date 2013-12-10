@@ -5,11 +5,12 @@
     "license": "MIT",
     "version": "0.1",
     "require": {
-        "php" : ">=5.3.3",
+        "php": ">=5.3.3",
         "symfony/yaml": "~2.4",
         "jackalope/jackalope-jackrabbit": "dev-master"
     },
     "autoload": {
         "psr-0": {"PHPCRAPI\\": "src/"}
-    }
+    },
+    "minimum-stability" : "dev"
 }
