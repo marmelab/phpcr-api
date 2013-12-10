@@ -35,8 +35,8 @@ class Workspace
     /**
      * Workspace constructor
      *
-     * @param Repository $repository The repository to log in
-     * @param string $workspaceName The workspace's name
+     * @param Repository $repository    The repository to log in
+     * @param string     $workspaceName The workspace's name
      *
      * @api
      */

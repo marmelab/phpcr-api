@@ -20,36 +20,43 @@ use PHPCRAPI\PHPCR\Session;
  */
 class SessionManager
 {
-	private $session;
+    private $session;
 
-	public function __construct(Session $session){
-		$this->session = $session;
-	}
+    public function __construct(Session $session)
+    {
+        $this->session = $session;
+    }
 
- 	public function getFactory(){
+     public function getFactory()
+     {
         return $this->session->getFactory();
     }
 
-	public function getName(){
-		return $this->session->getName();
-	}
+    public function getName()
+    {
+        return $this->session->getName();
+    }
 
-	public function getWorkspaceManager(){
-		return new WorkspaceManager($this->session->getWorkspace());
-	}
+    public function getWorkspaceManager()
+    {
+        return new WorkspaceManager($this->session->getWorkspace());
+    }
 
-	public function getNode($path){
-		return new NodeManager($this->session->getNode($path));
-	}
+    public function getNode($path)
+    {
+        return new NodeManager($this->session->getNode($path));
+    }
 
-	public function nodeExists($path){
-		try{
-			return $this->session->nodeExists($path);
-		}catch(RepositoryException $e){
-			throw new InternalServerErrorException($e->getMessage());
-		}
-	}
-	public function getRootNode(){
-		return new NodeManager($this->session->getRootNode());
-	}
+    public function nodeExists($path)
+    {
+        try {
+            return $this->session->nodeExists($path);
+        } catch (RepositoryException $e) {
+            throw new InternalServerErrorException($e->getMessage());
+        }
+    }
+    public function getRootNode()
+    {
+        return new NodeManager($this->session->getRootNode());
+    }
 }

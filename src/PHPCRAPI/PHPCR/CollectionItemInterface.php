@@ -11,5 +11,5 @@ namespace PHPCRAPI\PHPCR;
 
 interface CollectionItemInterface
 {
-	public function getName();
+    public function getName();
 }

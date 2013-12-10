@@ -11,34 +11,39 @@ namespace PHPCRAPI\PHPCR;
 
 class Factory implements CollectionItemInterface
 {
-	private $name;
+    private $name;
 
-	private $class;
+    private $class;
 
-	private $parameters = array();
+    private $parameters = array();
 
-	private $supportedOperations = array();
+    private $supportedOperations = array();
 
-	public function __construct($name, $class, $parameters, $supportedOperations){
-		$this->name = $name;
-		$this->class = $class;
-		$this->parameters = $parameters;
-		$this->supportedOperations = $supportedOperations;
-	}
+    public function __construct($name, $class, $parameters, $supportedOperations)
+    {
+        $this->name = $name;
+        $this->class = $class;
+        $this->parameters = $parameters;
+        $this->supportedOperations = $supportedOperations;
+    }
 
-	public function getName(){
-		return $this->name;
-	}
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	public function getClass(){
-		return $this->class;
-	}
+    public function getClass()
+    {
+        return $this->class;
+    }
 
-	public function getParameters(){
-		return $this->parameters;
-	}
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
 
-	public function getSupportedOperations(){
-		return $this->supportedOperations;
-	}
+    public function getSupportedOperations()
+    {
+        return $this->supportedOperations;
+    }
 }

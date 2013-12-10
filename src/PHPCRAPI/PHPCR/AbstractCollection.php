@@ -39,6 +39,7 @@ abstract class AbstractCollection
     public function add(CollectionItemInterface $item)
     {
         $this->items[$item->getName()] = $item;
+
         return $this;
     }
 
@@ -58,7 +59,7 @@ abstract class AbstractCollection
         if (!array_key_exists($name, $this->items)) {
             throw new CollectionUnknownKeyException(sprintf('Item name=%s does not exist in collection',$name));
         }
-        
+
         unset($this->items[$name]);
 
         return true;

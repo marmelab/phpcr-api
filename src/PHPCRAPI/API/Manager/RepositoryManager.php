@@ -26,26 +26,31 @@ use PHPCRAPI\PHPCR\Session;
  */
 class RepositoryManager
 {
-	private $repository;
+    private $repository;
 
-	public function __construct(Repository $repository){
-		$this->repository = $repository;
-	}
-    
-    public function getFactory(){
+    public function __construct(Repository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    public function getFactory()
+    {
         return $this->repository->getFactory();
     }
 
-    public function getName(){
+    public function getName()
+    {
         return $this->repository->getName();
     }
 
-	public function getSessionManager($workspace = null){
-		try {
+    public function getSessionManager($workspace = null)
+    {
+        try {
             $session = new Session(
-            	$this->repository,
+                $this->repository,
                 $workspace
             );
+
             return new SessionManager($session);
         } catch (NoSuchWorkspaceException $e) {
             if (!is_null($workspace)) {
@@ -58,5 +63,5 @@ class RepositoryManager
         } catch (RepositoryException $e) {
             throw new InternalServerErrorException($e->getMessage());
         }
-	}
+    }
 }

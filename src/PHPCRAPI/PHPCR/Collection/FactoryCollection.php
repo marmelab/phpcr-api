@@ -22,11 +22,12 @@ class FactoryCollection extends AbstractCollection
 {
     public function add(CollectionItemInterface $factory)
     {
-    	if(!($factory instanceof Factory)){
-    		throw new \IllegalArgumentException('You can only add Factory object to this collection');
-    	}
+        if (!($factory instanceof Factory)) {
+            throw new \IllegalArgumentException('You can only add Factory object to this collection');
+        }
 
         parent::add($factory);
+
         return $this;
     }
 }

@@ -22,11 +22,12 @@ class RepositoryCollection extends AbstractCollection
 {
     public function add(CollectionItemInterface $repository)
     {
-    	if(!($repository instanceof Repository)){
-    		throw new \IllegalArgumentException('You can only add Repository object to this collection');
-    	}
+        if (!($repository instanceof Repository)) {
+            throw new \IllegalArgumentException('You can only add Repository object to this collection');
+        }
 
         parent::add($repository);
+
         return $this;
     }
 }

@@ -24,58 +24,62 @@ use PHPCR\UnsupportedRepositoryOperationException;
  */
 class WorkspaceManager
 {
-	private $workspace;
+    private $workspace;
 
-	public function __construct(Workspace $workspace){
-		$this->workspace = $workspace;
-	}
+    public function __construct(Workspace $workspace)
+    {
+        $this->workspace = $workspace;
+    }
 
-	public function getAccessibleWorkspaceNames(){
-		try{
-			return $this->workspace->getAccessibleWorkspaceNames();
-		}catch(RepositoryException $e){
+    public function getAccessibleWorkspaceNames()
+    {
+        try {
+            return $this->workspace->getAccessibleWorkspaceNames();
+        } catch (RepositoryException $e) {
             throw new ResourceNotFoundException($e->getMessage());
         }
-	}
+    }
 
-	public function createWorkspace($name, $srcWorkspace = null){
-        if(is_null($name) || mb_strlen($name) == 0){
+    public function createWorkspace($name, $srcWorkspace = null)
+    {
+        if (is_null($name) || mb_strlen($name) == 0) {
             throw new InternalServerErrorException('The workspace name is empty');
-        }elseif(in_array($name, $this->workspace->getAccessibleWorkspaceNames())){
+        } elseif (in_array($name, $this->workspace->getAccessibleWorkspaceNames())) {
             throw new InternalServerErrorException('The workspace already exists');
         }
 
-        try{
+        try {
             $this->workspace->createWorkspace($name, $srcWorkspace);
-        }catch(\PHPCR\AccessDeniedException $e){
+        } catch (\PHPCR\AccessDeniedException $e) {
             throw new AccessDeniedException('The session through which this workspace object was acquired does not have sufficient access to create the new workspace');
-        }catch(UnsupportedRepositoryOperationException $e){
-            if(is_null($srcWorkspace)){
+        } catch (UnsupportedRepositoryOperationException $e) {
+            if (is_null($srcWorkspace)) {
                 throw new NotSupportedOperationException('The repository does not support the creation of workspaces');
-            }else{
+            } else {
                 throw new NotSupportedOperationException('The repository does not support the cloning of workspaces');
             }
-        }catch(NoSuchWorkspaceException $e){
+        } catch (NoSuchWorkspaceException $e) {
             throw new ResourceNotFoundException('The source workspace does not exist');
-        }catch(RepositoryException $e){
+        } catch (RepositoryException $e) {
             throw new ResourceNotFoundException($e->getMessage());
         }
-	}
+    }
 
-	public function deleteWorkspace($name){
-        if(is_null($name) || mb_strlen($name) == 0){
+    public function deleteWorkspace($name)
+    {
+        if (is_null($name) || mb_strlen($name) == 0) {
             throw new InternalServerErrorException('The workspace name is empty');
         }
 
-        try{
+        try {
             $this->workspace->deleteWorkspace($name);
-        }catch(\PHPCR\AccessDeniedException $e){
+        } catch (\PHPCR\AccessDeniedException $e) {
             throw new AccessDeniedException('The session through which this workspace object was acquired does not have sufficient access to remove the workspace');
-        }catch(UnsupportedRepositoryOperationException $e){
+        } catch (UnsupportedRepositoryOperationException $e) {
             throw new NotSupportedOperationException('The repository does not support the removal of workspaces');
-        }catch(NoSuchWorkspaceException $e){
+        } catch (NoSuchWorkspaceException $e) {
             throw new ResourceNotFoundException('The workspace does not exist');
-        }catch(RepositoryException $e){
+        } catch (RepositoryException $e) {
             throw new ResourceNotFoundException($e->getMessage());
         }
     }

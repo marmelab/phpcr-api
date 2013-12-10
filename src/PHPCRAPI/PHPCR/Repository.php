@@ -34,9 +34,9 @@ class Repository implements CollectionItemInterface
     /**
      * Repository constructor
      *
-     * @param string $name         Repository's name
-     * @param Factory $factory     Factory
-     * @param array  $parameters   Parameters of the repository
+     * @param string  $name       Repository's name
+     * @param Factory $factory    Factory
+     * @param array   $parameters Parameters of the repository
      *
      * @api
      */
@@ -104,7 +104,7 @@ class Repository implements CollectionItemInterface
 
         return $this->repository;
     }
-    
+
     /**
      * Call bridge with the wrapped PHPCR Repository
      *

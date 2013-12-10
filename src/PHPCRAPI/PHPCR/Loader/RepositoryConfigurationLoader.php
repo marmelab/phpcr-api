@@ -27,15 +27,15 @@ class RepositoryConfigurationLoader
      * Service constructor
      *
      * @param array $repositories The repositories configuration
-     * @param array $factories The factories configuration
+     * @param array $factories    The factories configuration
      */
     public function __construct($repositoriesConfiguration, FactoryConfigurationLoader $factoryLoader)
     {
-        $this->repositories = function() use($repositoriesConfiguration, $factoryLoader){
+        $this->repositories = function () use ($repositoriesConfiguration, $factoryLoader) {
             $factories = $factoryLoader->getFactories();
             $repositories = new RepositoryCollection();
 
-            foreach ($repositoriesConfiguration as $name=>$repository){
+            foreach ($repositoriesConfiguration as $name=>$repository) {
                 $factory = $factories->get($repository['factory']);
                 if(count(array_intersect(
                         array_keys($repository['parameters']),
@@ -45,7 +45,7 @@ class RepositoryConfigurationLoader
                 }
 
                 $repositories->add(new Repository(
-                    $name, 
+                    $name,
                     $factory,
                     (array) $repository['parameters']
                 ));
@@ -57,7 +57,7 @@ class RepositoryConfigurationLoader
 
     public function getRepositories()
     {
-        if($this->repositories instanceof \Closure){
+        if ($this->repositories instanceof \Closure) {
             $c = $this->repositories;
             $this->repositories = $c();
         }

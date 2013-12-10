@@ -14,29 +14,32 @@ use PHPCRAPI\PHPCR\Factory;
 
 class FactoryConfigurationLoader
 {
-	private $factories;
+    private $factories;
 
-	public function __construct($factoriesConfiguration){
-		$this->factories = function() use($factoriesConfiguration){
-			$factories = new FactoryCollection();
-			foreach($factoriesConfiguration as $name=>$factory){
-				$factories->add(new Factory(
-					$name, 
-					$factory['class'], 
-					(array)$factory['parameters'],
-					(array)$factory['supportedOperations']
-				));
-			}
-			return $factories;
-		};
-	}
+    public function __construct($factoriesConfiguration)
+    {
+        $this->factories = function () use ($factoriesConfiguration) {
+            $factories = new FactoryCollection();
+            foreach ($factoriesConfiguration as $name=>$factory) {
+                $factories->add(new Factory(
+                    $name,
+                    $factory['class'],
+                    (array) $factory['parameters'],
+                    (array) $factory['supportedOperations']
+                ));
+            }
 
-	public function getFactories(){
-		if($this->factories instanceof \Closure){
-			$c = $this->factories;
-			$this->factories = $c();
-		}
+            return $factories;
+        };
+    }
 
-		return $this->factories;
-	}
+    public function getFactories()
+    {
+        if ($this->factories instanceof \Closure) {
+            $c = $this->factories;
+            $this->factories = $c();
+        }
+
+        return $this->factories;
+    }
 }

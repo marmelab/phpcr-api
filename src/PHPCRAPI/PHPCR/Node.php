@@ -62,7 +62,8 @@ class Node
     /**
     * @see \PHPCR\NodeInterface::getParent
     */
-    public function getParent(){
+    public function getParent()
+    {
         return new Node($this->node->getParent());
     }
 
@@ -88,8 +89,8 @@ class Node
      */
     public static function getReducedTree(Node $node)
     {
-        if($node->getPath() == '/'){
-             return array( array( 
+        if ($node->getPath() == '/') {
+             return array( array(
                 'name'          =>  '/',
                 'path'          =>  '/',
                 'hasChildren'   =>  (count($node->getNodes()) > 0),
@@ -98,10 +99,11 @@ class Node
         }
 
         $parent = $node;
-        do{
+        do {
             $parent = $parent->getParent();
-        }while($parent->getPath() != '/');
-        return array( array( 
+        } while ($parent->getPath() != '/');
+
+        return array( array(
             'name'          =>  '/',
             'path'          =>  '/',
             'hasChildren'   =>  (count($parent->getNodes()) > 0),
@@ -109,13 +111,14 @@ class Node
         ));
     }
 
-    private static function processNodeForReducedTree(Node $node, Node $target){
-        if(substr($target->getPath(),0, strlen($node->getPath())) != $node->getPath()){
+    private static function processNodeForReducedTree(Node $node, Node $target)
+    {
+        if (substr($target->getPath(),0, strlen($node->getPath())) != $node->getPath()) {
             return array();
         }
         $tree = array();
-        
-        foreach($node->getNodes() as $child){
+
+        foreach ($node->getNodes() as $child) {
             $tree[] = array(
                 'name'          =>  $child->getName(),
                 'path'          =>  $child->getPath(),

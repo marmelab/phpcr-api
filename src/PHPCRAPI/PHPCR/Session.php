@@ -35,8 +35,8 @@ class Session
     /**
      * Session constructor
      *
-     * @param Repository $repository The repository to log in
-     * @param string $workspaceName The workspace's name
+     * @param Repository $repository    The repository to log in
+     * @param string     $workspaceName The workspace's name
      *
      * @api
      */
@@ -49,7 +49,7 @@ class Session
             $parameters['credentials.username'],
             $parameters['credentials.password']
         );
-       
+
         $this->session = $repository->login($credentials, $workspaceName);
     }
 

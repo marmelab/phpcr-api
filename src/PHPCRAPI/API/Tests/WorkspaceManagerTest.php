@@ -12,19 +12,19 @@ namespace PHPCRAPI\API\Tests;
 use PHPCRAPI\API\RepositoryLoader;
 use PHPCRAPI\API\Manager\RepositoryManager;
 use PHPCRAPI\API\Manager\WorkspaceManager;
-use PHPCRAPI\PHPCR\Session;
 
 class WorkspaceManagerTest extends \PHPUnit_Framework_TestCase
 {
-	public function testWorkspaceCreation(){
-		$repositoriesConfiguration = array(
-        	'RepoTest'	=>	array(
-        		'factory'		=>	'jackalope.jackrabbit',
-        		'parameters'	=>	array(
-		            'jackalope.jackrabbit_uri'		=> 'http://localhost:8080/server',
-		            'credentials.username'			=>	'admin',
-		            'credentials.password'			=> 	'admin'
-		    ))
+    public function testWorkspaceCreation()
+    {
+        $repositoriesConfiguration = array(
+            'RepoTest'	=>	array(
+                'factory'		=>	'jackalope.jackrabbit',
+                'parameters'	=>	array(
+                    'jackalope.jackrabbit_uri'		=> 'http://localhost:8080/server',
+                    'credentials.username'			=>	'admin',
+                    'credentials.password'			=> 	'admin'
+            ))
         );
 
         $loader = new RepositoryLoader($repositoriesConfiguration);
@@ -38,5 +38,5 @@ class WorkspaceManagerTest extends \PHPUnit_Framework_TestCase
         $workspaceManager->createWorkspace($name);
 
         $this->assertContains($name, $workspaceManager->getAccessibleWorkspaceNames());
-	}
+    }
 }
