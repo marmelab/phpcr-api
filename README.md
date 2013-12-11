@@ -5,8 +5,9 @@ PHPCR API provides an API to explore PHPCR repositories. The current implementat
 
 Installation
 ------------
-The recommended way to install phpcr-api is through `Composer`. Just create a
-``composer.json`` file and run the ``composer install`` command to
+
+The recommended way to install `phpcr-api` is through Composer. Just create a
+``composer.json`` file, and run the ``composer install`` command to
 install it:
 
 ```json
@@ -16,8 +17,9 @@ install it:
     }
 }
 ```
-Utilisation
--------------
+Usage
+-----
+
 ```php
 $repositoriesConfig = array(
     'Repository Test' => array(
