@@ -21,7 +21,7 @@ Utilisation
 ```php
 $repositoriesConfig = array(
     'Repository Test' => array(
-        'factory' => jackalope.jackrabbit,
+        'factory' => 'jackalope.jackrabbit',
         'parameters' => array(
             'jackalope.jackrabbit_uri' => 'http://localhost:8080/server',
             'credentials.username' => 'admin',
