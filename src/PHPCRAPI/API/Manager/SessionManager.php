@@ -115,4 +115,23 @@ class SessionManager
             throw new InternalServerErrorException($e->getMessage());
         }
     }
+
+    public function move($srcAbsPath, $destAbsPath){
+        try{
+            $this->session->move($srcAbsPath, $destAbsPath);
+            $this->save();
+        }catch(ItemExistsException $e){
+            throw new InternalServerErrorException('A node already exists at destAbsPath and same-name siblings are not allowed');    
+        }catch(PathNotFoundException $e){
+            throw new ResourceNotFoundException('Either srcAbsPath or destAbsPath cannot be found and this implementation performs this validation immediately');
+        }catch(VersionException $e){
+            throw new InternalServerErrorException('The parent node of destAbsPath or the parent node of srcAbsPath is versionable and checked-in, or or is non-versionable and its nearest versionable ancestor is checked-in and this implementation performs this validation immediately');
+        }catch(ConstraintViolationException $e){
+            throw new ResourceConstraintViolationException('A node-type or other constraint violation is detected immediately and this implementation performs this validation immediately');
+        }catch(LockException $e){
+            throw new ResourceLockedException('The move operation would violate a lock and this implementation performs this validation immediately');
+        }catch(RepositoryException $e){
+            throw new InternalServerErrorException($e->getMessage());
+        }
+    }
 }
