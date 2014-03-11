@@ -114,17 +114,17 @@ class NodeManager
             $property = $this->node->getProperty($name);
             $property->remove();
             $this->sessionManager->save();
-        } catch (VersionException $e) {
+        }catch(VersionException $e){
             throw new InternalServerErrorException('The parent node of this property is versionable and checked-in or is
                 non-versionable but its nearest versionable ancestor is checked-in and this implementation performs
                 this validation immediately instead of waiting until save');
-        } catch (LockException $e) {
+        }catch(LockException $e){
             throw new ResourceLockedException('A lock prevents the setting of the property and this implementation performs this validation
                 immediately instead of waiting until save');
-        } catch (ConstraintViolationException $e) {
+        }catch(ConstraintViolationException $e){
             throw new ResourceConstraintViolationException('Removing the specified property would violate a node type or implementation-specific
                 constraint and this implementation performs this validation immediately instead of waiting until save');
-        } catch (PHPCRAccessDeniedException $e) {
+        }catch(PHPCRAccessDeniedException $e){
             throw new AccessDeniedException('This property or an item in its subgraph is currently the target of a REFERENCE
                 property located in this workspace but outside this property\'s subgraph and the current Session does not have
                 read access to that REFERENCE property or if the current Session does not have sufficient privileges to
@@ -145,15 +145,15 @@ class NodeManager
             $this->sessionManager->save();
         } catch (UnsupportedRepositoryOperationException $e) {
             throw new NotSupportedOperationException('The type parameter is set and different from the current type and this implementation does not support dynamic re-binding');
-        } catch (ValueFormatException $e) {
+        }catch(ValueFormatException $e){
             throw new NotSupportedOperationException('The specified property is a DATE but the value cannot be expressed in
                 the ISO 8601-based format defined in the JCR 2.0 specification and the implementation does not support dates
                 incompatible with that format or value cannot be converted to the type of the specified property or the property already exists and is multi-valued');
-        } catch (LockException $e) {
+        }catch(LockException $e){
             throw new ResourceLockedException('A lock prevents the setting of the property and this implementation performs this validation immediately instead of waiting until save');
         } catch (ConstraintViolationException $e) {
             throw new ResourceConstraintViolationException($e->getMessage());
-        } catch (VersionException $e) {
+        }catch(VersionException $e){
             throw new InternalServerErrorException('This node is versionable and checked-in or is non-versionable but its nearest
                 versionable ancestor is checked-in and this implementation performs this validation immediately instead of waiting
                 until save');
@@ -164,7 +164,7 @@ class NodeManager
 
     public function rename($newName)
     {
-        if (is_null($newName) || mb_strlen($newNname) == 0) {
+        if (is_null($newName) || mb_strlen($newName) == 0) {
             throw new InternalServerErrorException('The new name is empty');
         }
 
