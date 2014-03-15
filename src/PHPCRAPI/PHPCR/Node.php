@@ -142,7 +142,7 @@ class Node
         $array = array();
 
         foreach ($this->getProperties() as $property) {
-            $array[$property->getName()] = $property->getValue();
+            $array[$property->getName()] = [ 'value' => $property->getValue(), 'type' => $property->getType() ];
         }
 
         return $array;

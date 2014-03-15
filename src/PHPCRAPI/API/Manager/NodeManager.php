@@ -140,8 +140,12 @@ class NodeManager
             throw new InternalServerErrorException('The property name is empty');
         }
 
-        try {
-            $this->node->setProperty($name, $value, $type);
+        try{
+            if (!is_null($type)) {
+                $this->node->setProperty($name, $value, $type);
+            } else {
+                $this->node->setProperty($name, $value);
+            }
             $this->sessionManager->save();
         } catch (UnsupportedRepositoryOperationException $e) {
             throw new NotSupportedOperationException('The type parameter is set and different from the current type and this implementation does not support dynamic re-binding');
