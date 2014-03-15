@@ -14,6 +14,7 @@ use PHPCRAPI\API\Exception\AccessDeniedException;
 use PHPCRAPI\API\Exception\InternalServerErrorException;
 use PHPCRAPI\API\Exception\NotSupportedOperationException;
 use PHPCRAPI\API\Exception\ResourceNotFoundException;
+use PHPCR\ItemExistsException;
 use PHPCR\RepositoryException;
 use PHPCR\NoSuchWorkspaceException;
 use PHPCR\UnsupportedRepositoryOperationException;
