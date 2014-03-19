@@ -9,3 +9,6 @@ phpcr_factories:
             - workspace.create
             - node.property.create
             - node.property.delete
+            - node.property.update
+            - node.delete
+            - node.create
