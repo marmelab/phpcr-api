@@ -66,6 +66,17 @@ class SessionManager
         }
     }
 
+    public function getNodeByIdentifier($id)
+    {
+        try {
+            return new NodeManager($this->session->getNodeByIdentifier($id), $this);
+        } catch (ItemNotFoundException $e) {
+            throw new ResourceNotFoundException('No node with the specified identifier exists or if this Session does not have read access to the node with the specified identifier');
+        } catch (RepositoryException $e) {
+            throw new InternalServerErrorException($e->getMessage());
+        }
+    }
+
     public function nodeExists($path)
     {
         try {
