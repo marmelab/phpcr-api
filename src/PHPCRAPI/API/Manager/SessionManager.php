@@ -10,6 +10,7 @@
 namespace PHPCRAPI\API\Manager;
 
 use PHPCR\AccessDeniedException as PHPCRAccessDeniedException;
+use PHPCR\ItemNotFoundException;
 use PHPCR\RepositoryException;
 use PHPCR\Version\VersionException;
 use PHPCR\Lock\LockException;
