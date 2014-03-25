@@ -10,6 +10,7 @@
 namespace PHPCRAPI\API\Manager;
 
 use PHPCR\AccessDeniedException as PHPCRAccessDeniedException;
+use PHPCR\ItemNotFoundException;
 use PHPCR\RepositoryException;
 use PHPCR\Version\VersionException;
 use PHPCR\Lock\LockException;
@@ -61,6 +62,17 @@ class SessionManager
             return new NodeManager($this->session->getNode($path), $this);
         } catch (PathNotFoundException $e) {
             throw new ResourceNotFoundException('No accessible node is found at the specified path');
+        } catch (RepositoryException $e) {
+            throw new InternalServerErrorException($e->getMessage());
+        }
+    }
+
+    public function getNodeByIdentifier($id)
+    {
+        try {
+            return new NodeManager($this->session->getNodeByIdentifier($id), $this);
+        } catch (ItemNotFoundException $e) {
+            throw new ResourceNotFoundException('No node with the specified identifier exists or if this Session does not have read access to the node with the specified identifier');
         } catch (RepositoryException $e) {
             throw new InternalServerErrorException($e->getMessage());
         }
