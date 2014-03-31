@@ -12,3 +12,4 @@ phpcr_factories:
             - node.property.update
             - node.delete
             - node.create
+            - node.move
