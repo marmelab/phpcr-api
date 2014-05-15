@@ -3,28 +3,28 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "dbf08a5e9da74415ca3794b4b5329171",
+    "hash": "13c93a6835fe642cba0cd8ae8663068b",
     "packages": [
         {
             "name": "jackalope/jackalope",
-            "version": "1.0.1",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jackalope/jackalope.git",
-                "reference": "605a3fb6d83c906d19ad88b2347be9453c96a19f"
+                "reference": "1f936da47bd29deb8b0a1a21af46519485f99d37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jackalope/jackalope/zipball/605a3fb6d83c906d19ad88b2347be9453c96a19f",
-                "reference": "605a3fb6d83c906d19ad88b2347be9453c96a19f",
+                "url": "https://api.github.com/repos/jackalope/jackalope/zipball/1f936da47bd29deb8b0a1a21af46519485f99d37",
+                "reference": "1f936da47bd29deb8b0a1a21af46519485f99d37",
                 "shasum": ""
             },
             "require": {
-                "ext-libxml": "*",
+                "ext-xml": "*",
                 "jackalope/jackalope-transport": "*",
                 "php": ">=5.3.2",
                 "phpcr/phpcr": "~2.1.0",
-                "phpcr/phpcr-utils": "~1.0.0"
+                "phpcr/phpcr-utils": "~1.1.0"
             },
             "provide": {
                 "phpcr/phpcr-implementation": "2.1.0"
@@ -32,7 +32,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -56,35 +56,36 @@
             "keywords": [
                 "phpcr"
             ],
-            "time": "2013-11-06 10:28:46"
+            "time": "2014-04-04 10:29:19"
         },
         {
             "name": "jackalope/jackalope-jackrabbit",
-            "version": "dev-master",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jackalope/jackalope-jackrabbit.git",
-                "reference": "b2c96329fca500f2e83c4e74fffa1b6f97a3f492"
+                "reference": "b4744acbceb7ad70484ec4e4d2391df4a5a533fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jackalope/jackalope-jackrabbit/zipball/b2c96329fca500f2e83c4e74fffa1b6f97a3f492",
-                "reference": "b2c96329fca500f2e83c4e74fffa1b6f97a3f492",
+                "url": "https://api.github.com/repos/jackalope/jackalope-jackrabbit/zipball/b4744acbceb7ad70484ec4e4d2391df4a5a533fc",
+                "reference": "b4744acbceb7ad70484ec4e4d2391df4a5a533fc",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "ext-libxml": "*",
-                "jackalope/jackalope": "~1.0.0",
+                "ext-xml": "*",
+                "jackalope/jackalope": "~1.1.0",
                 "php": ">=5.3.3",
                 "phpcr/phpcr": "~2.1.0",
-                "phpcr/phpcr-utils": "~1.0.0"
+                "phpcr/phpcr-utils": "~1.1.0"
             },
             "provide": {
-                "jackalope/jackalope-transport": "1.0.0"
+                "jackalope/jackalope-transport": "1.1.0"
             },
             "require-dev": {
                 "phpcr/phpcr-api-tests": "~2.1.0",
+                "psr/log": "~1.0",
                 "symfony/console": "~2.0"
             },
             "bin": [
@@ -94,7 +95,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -120,20 +121,20 @@
                 "phpcr",
                 "transport implementation"
             ],
-            "time": "2013-11-01 09:24:00"
+            "time": "2014-02-28 17:26:50"
         },
         {
             "name": "phpcr/phpcr",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpcr/phpcr.git",
-                "reference": "f9483968fb77584e47c1dbf2dbc7906447f8c5b1"
+                "reference": "eea4472c18e6f01fed9ce30dbada8255759ab810"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpcr/phpcr/zipball/f9483968fb77584e47c1dbf2dbc7906447f8c5b1",
-                "reference": "f9483968fb77584e47c1dbf2dbc7906447f8c5b1",
+                "url": "https://api.github.com/repos/phpcr/phpcr/zipball/eea4472c18e6f01fed9ce30dbada8255759ab810",
+                "reference": "eea4472c18e6f01fed9ce30dbada8255759ab810",
                 "shasum": ""
             },
             "require": {
@@ -175,20 +176,20 @@
                 "contentrepository",
                 "phpcr"
             ],
-            "time": "2013-10-07 15:34:44"
+            "time": "2014-03-03 07:42:27"
         },
         {
             "name": "phpcr/phpcr-utils",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpcr/phpcr-utils.git",
-                "reference": "7920ce3c60cffceb325819bfdf4ebe873df69839"
+                "reference": "e50943432f8e26f9fc05af7994f8747ead3270fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpcr/phpcr-utils/zipball/7920ce3c60cffceb325819bfdf4ebe873df69839",
-                "reference": "7920ce3c60cffceb325819bfdf4ebe873df69839",
+                "url": "https://api.github.com/repos/phpcr/phpcr-utils/zipball/e50943432f8e26f9fc05af7994f8747ead3270fa",
+                "reference": "e50943432f8e26f9fc05af7994f8747ead3270fa",
                 "shasum": ""
             },
             "require": {
@@ -199,7 +200,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -238,21 +239,21 @@
                 "contentrepository",
                 "phpcr"
             ],
-            "time": "2013-10-10 19:46:30"
+            "time": "2014-02-02 18:30:21"
         },
         {
             "name": "symfony/console",
-            "version": "v2.4.0",
+            "version": "v2.4.4",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "3c1496ae96d24ccc6c340fcc25f71d7a1ab4c12c"
+                "reference": "2e452005b1e1d003d23702d227e23614679eb5ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/3c1496ae96d24ccc6c340fcc25f71d7a1ab4c12c",
-                "reference": "3c1496ae96d24ccc6c340fcc25f71d7a1ab4c12c",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/2e452005b1e1d003d23702d227e23614679eb5ca",
+                "reference": "2e452005b1e1d003d23702d227e23614679eb5ca",
                 "shasum": ""
             },
             "require": {
@@ -282,7 +283,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -291,21 +294,21 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2013-11-27 09:10:40"
+            "time": "2014-04-27 13:34:57"
         },
         {
             "name": "symfony/yaml",
-            "version": "dev-master",
+            "version": "v2.4.4",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "1481f096caead542c2dfadd67d9fd6124d97e273"
+                "reference": "65539ecde838f9c0d18b006b2101e3deb4b5c9ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/1481f096caead542c2dfadd67d9fd6124d97e273",
-                "reference": "1481f096caead542c2dfadd67d9fd6124d97e273",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/65539ecde838f9c0d18b006b2101e3deb4b5c9ff",
+                "reference": "65539ecde838f9c0d18b006b2101e3deb4b5c9ff",
                 "shasum": ""
             },
             "require": {
@@ -314,7 +317,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -329,7 +332,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -338,7 +343,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2013-11-26 16:42:52"
+            "time": "2014-04-18 20:37:09"
         }
     ],
     "packages-dev": [
@@ -348,13 +353,12 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "symfony/yaml": 20,
-        "jackalope/jackalope-jackrabbit": 20
-    },
-    "platform": [
+    "stability-flags": [
 
     ],
+    "platform": {
+        "php": ">=5.3.3"
+    },
     "platform-dev": [
 
     ]
