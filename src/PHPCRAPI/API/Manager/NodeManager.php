@@ -108,6 +108,15 @@ class NodeManager
         }
     }
 
+    public function hasChildren()
+    {
+        try {
+            return $this->node->hasNodes();
+        } catch (RepositoryException $e) {
+            throw new InternalServerErrorException($e->getMessage());
+        }
+    }
+
     public function removeProperty($name)
     {
         try {

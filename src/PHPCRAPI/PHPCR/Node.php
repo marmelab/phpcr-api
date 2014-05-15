@@ -93,7 +93,7 @@ class Node
              return array( array(
                 'name'          =>  '/',
                 'path'          =>  '/',
-                'hasChildren'   =>  (count($node->getNodes()) > 0),
+                'hasChildren'   =>  $node->hasNodes(),
                 'children'      =>  Node::processNodeForReducedTree($node, $node)
             ));
         }
@@ -106,7 +106,7 @@ class Node
         return array( array(
             'name'          =>  '/',
             'path'          =>  '/',
-            'hasChildren'   =>  (count($parent->getNodes()) > 0),
+            'hasChildren'   =>  $parent->hasNodes(),
             'children'      =>  Node::processNodeForReducedTree($parent, $node)
         ));
     }
@@ -122,7 +122,7 @@ class Node
             $tree[] = array(
                 'name'          =>  $child->getName(),
                 'path'          =>  $child->getPath(),
-                'hasChildren'   =>  (count($child->getNodes()) > 0),
+                'hasChildren'   =>  $child->hasNodes(),
                 'children'      =>  Node::processNodeForReducedTree($child, $target)
             );
         }
