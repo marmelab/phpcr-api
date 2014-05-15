@@ -3,7 +3,7 @@
     "type": "library",
     "description": "PHPCR API provides an API to explore PHPCR repositories.",
     "license": "MIT",
-    "version": "0.1",
+    "version": "1.0.0",
     "require": {
         "php": ">=5.3.3",
         "symfony/yaml": "~2.4",
