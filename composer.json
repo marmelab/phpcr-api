@@ -6,11 +6,10 @@
     "version": "1.0.0",
     "require": {
         "php": ">=5.3.3",
-        "symfony/yaml": "~2.4",
-        "jackalope/jackalope-jackrabbit": "dev-master"
+        "symfony/yaml": "2.4.4",
+        "jackalope/jackalope-jackrabbit": "1.1.1"
     },
     "autoload": {
         "psr-0": {"PHPCRAPI\\": "src/"}
-    },
-    "minimum-stability" : "dev"
+    }
 }
