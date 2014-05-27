@@ -3,13 +3,25 @@
     "type": "library",
     "description": "PHPCR API provides an API to explore PHPCR repositories.",
     "license": "MIT",
-    "version": "1.0.0",
     "require": {
         "php": ">=5.3.3",
-        "symfony/yaml": "2.4.4",
-        "jackalope/jackalope-jackrabbit": "1.1.1"
+        "symfony/yaml": "~2.4",
+        "phpcr/phpcr-implementation": "2.1.*"
+    },
+    "require-dev": {
+        "jackalope/jackalope-jackrabbit": "1.1.*",
+        "jackalope/jackalope-doctrine-dbal": "1.1.*"
+    },
+    "suggest": {
+        "jackalope/jackalope-jackrabbit": "To connect to a Jackrabbit content repository, 1.1.*",
+        "jackalope/jackalope-doctrine-dbal": "To connect to a Doctrine DBAL content repository, 1.1.*"
     },
     "autoload": {
         "psr-0": {"PHPCRAPI\\": "src/"}
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1-dev"
+        }
     }
 }

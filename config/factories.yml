@@ -13,3 +13,18 @@ phpcr_factories:
             - node.delete
             - node.create
             - node.move
+    jackalope.doctrine-dbal:
+        class: '\Jackalope\RepositoryFactoryDoctrineDBAL'
+        parameters:
+            - jackalope.doctrine_dbal_connection
+            - credentials.username
+            - credentials.password
+        supportedOperations:
+            - workspace.create
+            - workspace.delete
+            - node.property.create
+            - node.property.delete
+            - node.property.update
+            - node.delete
+            - node.create
+            - node.move

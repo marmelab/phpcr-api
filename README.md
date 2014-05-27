@@ -1,7 +1,7 @@
 PHPCR API
 =============
 
-PHPCR API provides an API to explore PHPCR repositories. The current implementation supports Jackalope Jackrabbit.
+PHPCR API provides an API to explore PHPCR repositories. The current implementation supports Jackalope Jackrabbit and Doctrine DBAL.
 
 Installation
 ------------
@@ -26,6 +26,14 @@ $repositoriesConfig = array(
         'factory' => 'jackalope.jackrabbit',
         'parameters' => array(
             'jackalope.jackrabbit_uri' => 'http://localhost:8080/server',
+            'credentials.username' => 'admin',
+            'credentials.password' => 'admin'
+        )
+    ),
+    'Repository Test2' => array(
+        'factory' => 'jackalope.doctrine-dbal',
+        'parameters' => array(
+            'jackalope.doctrine_dbal_connection' => $dbalConnectionInstance,
             'credentials.username' => 'admin',
             'credentials.password' => 'admin'
         )
