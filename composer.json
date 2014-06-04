@@ -10,14 +10,17 @@
     },
     "require-dev": {
         "jackalope/jackalope-jackrabbit": "1.1.*",
-        "jackalope/jackalope-doctrine-dbal": "1.1.*"
+        "jackalope/jackalope-doctrine-dbal": "1.1.*",
+        "ptrofimov/xpmock": "1.1.5"
     },
     "suggest": {
         "jackalope/jackalope-jackrabbit": "To connect to a Jackrabbit content repository, 1.1.*",
         "jackalope/jackalope-doctrine-dbal": "To connect to a Doctrine DBAL content repository, 1.1.*"
     },
     "autoload": {
-        "psr-0": {"PHPCRAPI\\": "src/"}
+        "psr-0": {
+            "PHPCRAPI\\": ["src/", "tests/"]
+        }
     },
     "extra": {
         "branch-alias": {
