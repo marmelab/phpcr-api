@@ -8,16 +8,14 @@ class WorkspaceManagerTest extends \PHPUnit_Framework_TestCase
 {
     use \Xpmock\TestCaseTrait;
 
-    private $workspace;
+    private $workspaceInterface;
 
-    private $manager;
+    private $session;
 
     public function setUp()
     {
-        $this->workspace = $this->mock('\PHPCRAPI\PHPCR\Workspace')
-            ->getAccessibleWorkspaceNames(['default'])
-            ->new($this->mock('\PHPCR\WorkspaceInterface', null), $this->mock('\PHPCRAPI\PHPCR\Session', null));
-        $this->manager = new WorkspaceManager($this->workspace);
+        $this->workspaceInterface = $this->mock('\PHPCR\WorkspaceInterface', null);
+        $this->session = $this->mock('\PHPCRAPI\PHPCR\Session', null);
     }
 
     /**
@@ -25,7 +23,11 @@ class WorkspaceManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testItShouldTriggerAnExceptionIfNameIsEmptyWhenCreatingAWorkspace()
     {
-        $this->manager->createWorkspace(null);
+        $workspace = $this->mock('\PHPCRAPI\PHPCR\Workspace')
+            ->getAccessibleWorkspaceNames(['default'])
+            ->new($this->workspaceInterface, $this->session);
+        $manager = new WorkspaceManager($workspace);
+        $manager->createWorkspace(null);
     }
 
     /**
@@ -33,7 +35,11 @@ class WorkspaceManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testItShouldTriggerAnExceptionIfTheWorkspaceAlreadyExistsWhenCreatingAWorkspace()
     {
-        $this->manager->createWorkspace('default');
+        $workspace = $this->mock('\PHPCRAPI\PHPCR\Workspace')
+            ->getAccessibleWorkspaceNames(['default'])
+            ->new($this->workspaceInterface, $this->session);
+        $manager = new WorkspaceManager($workspace);
+        $manager->createWorkspace('default');
     }
 
     public function testItShouldCallCreateWorkspaceOnTheWorkspace()
@@ -41,7 +47,7 @@ class WorkspaceManagerTest extends \PHPUnit_Framework_TestCase
         $workspace = $this->mock('\PHPCRAPI\PHPCR\Workspace')
             ->getAccessibleWorkspaceNames(['default'])
             ->createWorkspace($this->once())
-            ->new($this->mock('\PHPCR\WorkspaceInterface', null), $this->mock('\PHPCRAPI\PHPCR\Session', null));
+            ->new($this->workspaceInterface, $this->session);
         $manager = new WorkspaceManager($workspace);
 
         $manager->createWorkspace('security', null);
@@ -52,7 +58,11 @@ class WorkspaceManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testItShouldTriggerAnExceptionIfNameIsEmptyWhenDeletingAWorkspace()
     {
-        $this->manager->deleteWorkspace(null);
+        $workspace = $this->mock('\PHPCRAPI\PHPCR\Workspace')
+            ->getAccessibleWorkspaceNames(['default'])
+            ->new($this->workspaceInterface, $this->session);
+        $manager = new WorkspaceManager($workspace);
+        $manager->deleteWorkspace(null);
     }
 
     public function testItShouldCallDeleteWorkspaceOnTheWorkspace()
@@ -60,9 +70,19 @@ class WorkspaceManagerTest extends \PHPUnit_Framework_TestCase
         $workspace = $this->mock('\PHPCRAPI\PHPCR\Workspace')
             ->getAccessibleWorkspaceNames(['default'])
             ->deleteWorkspace($this->once())
-            ->new($this->mock('\PHPCR\WorkspaceInterface', null), $this->mock('\PHPCRAPI\PHPCR\Session', null));
+            ->new($this->workspaceInterface, $this->session);
         $manager = new WorkspaceManager($workspace);
 
         $manager->deleteWorkspace('security');
+    }
+
+    public function testItShouldCallGetAccessibleWorkspaceNames()
+    {
+        $workspace = $this->mock('\PHPCRAPI\PHPCR\Workspace')
+            ->getAccessibleWorkspaceNames($this->once())
+            ->new($this->workspaceInterface, $this->session);
+        $manager = new WorkspaceManager($workspace);
+
+        $manager->getAccessibleWorkspaceNames();
     }
 }
