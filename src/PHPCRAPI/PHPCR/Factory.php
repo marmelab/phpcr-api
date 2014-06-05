@@ -37,6 +37,11 @@ class Factory implements CollectionItemInterface
         return $this->class;
     }
 
+    public function instanciate()
+    {
+        return new $this->class();
+    }
+
     public function getParameters()
     {
         return $this->parameters;
