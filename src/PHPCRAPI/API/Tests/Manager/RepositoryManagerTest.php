@@ -26,4 +26,22 @@ class RepositoryManagerTest extends \PHPUnit_Framework_TestCase
         $manager = new RepositoryManager($repository);
         $this->assertTrue($manager->getSessionManager() instanceof SessionManager);
     }
+
+    public function testItShouldCallGetFactory()
+    {
+        $repository = $this->mock('\PHPCRAPI\PHPCR\Repository')
+            ->getFactory($this->once())
+            ->new();
+        $manager = new RepositoryManager($repository);
+        $manager->getFactory();
+    }
+
+    public function testItShouldCallGetName()
+    {
+        $repository = $this->mock('\PHPCRAPI\PHPCR\Repository')
+            ->getName($this->once())
+            ->new();
+        $manager = new RepositoryManager($repository);
+        $manager->getName();
+    }
 }
