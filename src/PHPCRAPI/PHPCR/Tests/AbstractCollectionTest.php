@@ -9,7 +9,8 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
 
     private $collection;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->collection = $this->mock('\PHPCRAPI\PHPCR\AbstractCollection')
             ->new();
 
@@ -18,14 +19,16 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
             ->new();
     }
 
-    public function testItShouldAddItemToCollection() {
+    public function testItShouldAddItemToCollection()
+    {
         $this->assertCount(0, $this->collection->getAll(), 'The collection should be empty');
         $this->collection->add($this->item);
         $this->assertCount(1, $this->collection->getAll(), 'The collection should have only 1 element');
         $this->assertSame($this->collection->get('Test'), $this->item, 'The collection should return the added item');
     }
 
-    public function testItShouldRemoveItemFromCollection() {
+    public function testItShouldRemoveItemFromCollection()
+    {
         $this->collection->add($this->item);
         $this->collection->remove('Test');
         $this->assertCount(0, $this->collection->getAll(), 'The collection should be empty');
@@ -34,16 +37,19 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \PHPCRAPI\PHPCR\Exception\CollectionUnknownKeyException
      */
-    public function testItShouldThrowExceptionWhenRemovingAnUnknownItemFromCollection() {
+    public function testItShouldThrowExceptionWhenRemovingAnUnknownItemFromCollection()
+    {
         $this->collection->remove('Test');
     }
 
-    public function testItShouldReturnTrueWhenAnItemIsInTheCollection() {
+    public function testItShouldReturnTrueWhenAnItemIsInTheCollection()
+    {
         $this->collection->add($this->item);
         $this->assertTrue($this->collection->has('Test'), 'The collection should contain `Test` item');
     }
 
-    public function testItShouldAddItemsPassedInTheConstructor() {
+    public function testItShouldAddItemsPassedInTheConstructor()
+    {
         $collection = $this->mock('\PHPCRAPI\PHPCR\AbstractCollection')
             ->new([$this->item]);
         $this->assertSame($collection->get('Test'), $this->item, 'The collection should return the added item');

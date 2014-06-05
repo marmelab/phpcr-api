@@ -9,7 +9,8 @@ class RepositoryManagerTest extends \PHPUnit_Framework_TestCase
 {
     use \Xpmock\TestCaseTrait;
 
-    public function testItShouldReturnASessionManager() {
+    public function testItShouldReturnASessionManager()
+    {
         $sessionInterface = $this->mock('\PHPCR\SessionInterface', null);
         $repositoryInterface = $this->mock('\PHPCR\RepositoryInterface', null);
 

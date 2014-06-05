@@ -12,7 +12,8 @@ class SessionTest extends \PHPUnit_Framework_TestCase
 
     private $sessionInterface;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->sessionInterface = $this->mock('\PHPCR\SessionInterface', null);
         $this->sessionInterface->mock()
             ->getNode($this->mock('\PHPCR\NodeInterface', null))
@@ -22,7 +23,8 @@ class SessionTest extends \PHPUnit_Framework_TestCase
             ->getWorkspace($this->mock('\PHPCR\WorkspaceInterface', null));
     }
 
-    public function testItShouldCallLoginOnRepository() {
+    public function testItShouldCallLoginOnRepository()
+    {
         $repository = $this->mock('\PHPCRAPI\PHPCR\Repository')
             ->login($this->sessionInterface, $this->once())
             ->getParameters()
@@ -31,7 +33,8 @@ class SessionTest extends \PHPUnit_Framework_TestCase
         $session = new Session($repository, 'default');
     }
 
-    public function testItShouldWrapEachInterfaceIntoANewProxy() {
+    public function testItShouldWrapEachInterfaceIntoANewProxy()
+    {
         $repository = $this->mock('\PHPCRAPI\PHPCR\Repository')
             ->login($this->sessionInterface)
             ->getParameters()

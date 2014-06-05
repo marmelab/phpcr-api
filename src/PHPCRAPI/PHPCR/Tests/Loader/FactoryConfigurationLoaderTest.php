@@ -11,7 +11,8 @@ class FactoryConfigurationLoaderTest extends \PHPUnit_Framework_TestCase
 
     private $collection;
 
-    public function setUp() {
+    public function setUp()
+    {
         $loader = new FactoryConfigurationLoader(array(
             'foo' => array(
                 'class' => '\Foo',
@@ -27,7 +28,8 @@ class FactoryConfigurationLoaderTest extends \PHPUnit_Framework_TestCase
         $this->collection = $loader->getFactories();
     }
 
-    public function testItShouldCreateAFactoryCollectionFilledWithOurConfiguration() {
+    public function testItShouldCreateAFactoryCollectionFilledWithOurConfiguration()
+    {
         $this->assertTrue($this->collection instanceof FactoryCollection, 'The loader should return a FactoryCollection');
         $this->assertTrue($this->collection->has('foo'));
         $this->assertTrue($this->collection->has('bar'));

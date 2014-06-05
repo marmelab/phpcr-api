@@ -11,14 +11,16 @@ class FactoryCollectionTest extends \PHPUnit_Framework_TestCase
 
     private $collection;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->collection = new FactoryCollection();
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testItShouldOnlyAcceptFactoryObject() {
+    public function testItShouldOnlyAcceptFactoryObject()
+    {
         $item = new Factory('Foo', 'FooBar', array(), array());
         $this->collection->add($item);
         $this->assertSame($this->collection->get('Foo'), $item, 'The collection should return the added item');

@@ -12,7 +12,8 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 
 	private $node;
 
-	public function setUp() {
+	public function setUp()
+	{
 		$this->phpcrNode = $this->mock('\PHPCR\NodeInterface', null);
 		$this->phpcrNode->mock()
 			->getNode($this->mock('\PHPCR\NodeInterface', null))
@@ -22,13 +23,15 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 		$this->node = new Node($this->phpcrNode);
 	}
 
-	public function testItShouldWrapEachNodeInterfaceIntoANewNodeProxy() {
+	public function testItShouldWrapEachNodeInterfaceIntoANewNodeProxy()
+	{
 		$this->assertTrue($this->node->getParent() instanceof Node);
 		$this->assertTrue($this->node->getNodes()[0] instanceof Node);
 		$this->assertTrue($this->node->getNode('/path') instanceof Node);
 	}
 
-	public function testItShouldGenerateAReducedTree() {
+	public function testItShouldGenerateAReducedTree()
+	{
 		/**
 		 * We create a test tree
 		 *

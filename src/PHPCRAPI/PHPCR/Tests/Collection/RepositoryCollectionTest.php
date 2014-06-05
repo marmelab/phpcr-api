@@ -12,14 +12,16 @@ class RepositoryCollectionTest extends \PHPUnit_Framework_TestCase
 
     private $collection;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->collection = new RepositoryCollection();
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testItShouldOnlyAcceptRepositoryObject() {
+    public function testItShouldOnlyAcceptRepositoryObject()
+    {
         $factory = new Factory('Foo', 'FooBar', array(), array());
         $item = new Repository('Foo', $factory, array());
         $this->collection->add($item);

@@ -8,7 +8,8 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
 {
     use \Xpmock\TestCaseTrait;
 
-    public function testItShouldInstanciateTheFactory() {
+    public function testItShouldInstanciateTheFactory()
+    {
         $repositoryInterface = $this->mock()
             ->fooBar()
             ->new();

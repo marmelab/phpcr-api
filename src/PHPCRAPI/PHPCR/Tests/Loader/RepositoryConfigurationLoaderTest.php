@@ -16,7 +16,8 @@ class RepositoryConfigurationLoaderTest extends \PHPUnit_Framework_TestCase
 
     private $factory;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->factory = new Factory('foo', '\Foo', array('param'), array());
         $factoryCollection = $this->mock('\PHPCRAPI\PHPCR\Collection\FactoryCollection')
             ->get($this->factory)
@@ -38,7 +39,8 @@ class RepositoryConfigurationLoaderTest extends \PHPUnit_Framework_TestCase
         $this->collection = $loader->getRepositories();
     }
 
-    public function testItShouldCreateARepositoryCollectionFilledWithOurConfiguration() {
+    public function testItShouldCreateARepositoryCollectionFilledWithOurConfiguration()
+    {
         $this->assertTrue($this->collection instanceof RepositoryCollection, 'The loader should return a RepositoryCollection');
         $this->assertTrue($this->collection->has('repositoryTest'));
         $this->assertTrue($this->collection->has('repositoryTest2'));
