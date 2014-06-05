@@ -23,6 +23,6 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
 
         $repository = new Repository('Repository Test', $factory, array('param' => 'value'));
         $repository->fooBar(); // Will trigger Repository::getRepository()
-        $repository->fooBar(); // Will trigger Repository::getRepository() and it should not call Factory::instanciate()
+        $repository->fooBar(); // Will trigger Repository::getRepository() and it should not call Factory::instanciate
     }
 }
