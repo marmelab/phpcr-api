@@ -47,10 +47,9 @@ class Repository implements CollectionItemInterface
         $this->parameters = $parameters;
 
         $this->repository = function () use ($factory, $parameters) {
-            $factoryClass = $factory->getClass();
-            $factory = new $factoryClass();
+            $factoryInstance = $factory->instanciate();
 
-            return $factory->getRepository($parameters);
+            return $factoryInstance->getRepository($parameters);
         };
     }
 

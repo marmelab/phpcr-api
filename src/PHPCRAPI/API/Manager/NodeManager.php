@@ -47,7 +47,7 @@ class NodeManager
     public function getReducedTree()
     {
         try {
-            return Node::getReducedTree($this->node);
+            return $this->node->getReducedTree();
         } catch (RepositoryException $e) {
             throw new InternalServerErrorException($e->getMessage());
         }
@@ -84,10 +84,10 @@ class NodeManager
         }
     }
 
-    public function getPropertiesToArray()
+    public function getPropertiesAsArray()
     {
         try {
-            return $this->node->getPropertiesToArray();
+            return $this->node->getPropertiesAsArray();
         } catch (RepositoryException $e) {
             throw new InternalServerErrorException($e->getMessage());
         }

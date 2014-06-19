@@ -1,5 +1,4 @@
-PHPCR API
-=============
+# PHPCR API [![Build Status](https://travis-ci.org/marmelab/phpcr-api.svg?branch=master)](https://travis-ci.org/marmelab/phpcr-api)
 
 PHPCR API provides an API to explore PHPCR repositories. The current implementation supports Jackalope Jackrabbit and Doctrine DBAL.
 

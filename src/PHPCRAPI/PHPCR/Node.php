@@ -81,53 +81,49 @@ class Node
     /**
      * Return a the minimum tree to display for a node
      *
-     * @param Node $node The target node
-     *
      * @return array The tree
      *
      * @api
      */
-    public static function getReducedTree(Node $node)
+    public function getReducedTree()
     {
-        if ($node->getPath() == '/') {
-             return array( array(
+        $parseTree = function (Node $node, Node $target) use ( &$parseTree ) {
+            if (substr($target->getPath(),0, strlen($node->getPath())) != $node->getPath()) {
+                return array();
+            }
+            $tree = array();
+
+            foreach ($node->getNodes() as $child) {
+                $tree[] = array(
+                    'name'          =>  $child->getName(),
+                    'path'          =>  $child->getPath(),
+                    'hasChildren'   =>  $child->hasNodes(),
+                    'children'      =>  $parseTree($child, $target)
+                );
+            }
+
+            return $tree;
+        };
+
+        $treeFactory = function($parent, $node) use ($parseTree) {
+            return [ '/' => [
                 'name'          =>  '/',
                 'path'          =>  '/',
-                'hasChildren'   =>  $node->hasNodes(),
-                'children'      =>  Node::processNodeForReducedTree($node, $node)
-            ));
+                'hasChildren'   =>  $parent->hasNodes(),
+                'children'      =>  $parseTree($parent, $node)
+            ]];
+        };
+
+        if ($this->getPath() == '/') {
+            return $treeFactory($this, $this);
         }
 
-        $parent = $node;
+        $parent = $this;
         do {
             $parent = $parent->getParent();
         } while ($parent->getPath() != '/');
 
-        return array( array(
-            'name'          =>  '/',
-            'path'          =>  '/',
-            'hasChildren'   =>  $parent->hasNodes(),
-            'children'      =>  Node::processNodeForReducedTree($parent, $node)
-        ));
-    }
-
-    private static function processNodeForReducedTree(Node $node, Node $target)
-    {
-        if (substr($target->getPath(),0, strlen($node->getPath())) != $node->getPath()) {
-            return array();
-        }
-        $tree = array();
-
-        foreach ($node->getNodes() as $child) {
-            $tree[] = array(
-                'name'          =>  $child->getName(),
-                'path'          =>  $child->getPath(),
-                'hasChildren'   =>  $child->hasNodes(),
-                'children'      =>  Node::processNodeForReducedTree($child, $target)
-            );
-        }
-
-        return $tree;
+        return $treeFactory($parent, $this);
     }
 
     /**
@@ -137,7 +133,7 @@ class Node
      *
      * @api
      */
-    public function getPropertiesToArray()
+    public function getPropertiesAsArray()
     {
         $array = array();
 

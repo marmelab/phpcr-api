@@ -23,7 +23,7 @@ class RepositoryCollection extends AbstractCollection
     public function add(CollectionItemInterface $repository)
     {
         if (!($repository instanceof Repository)) {
-            throw new \IllegalArgumentException('You can only add Repository object to this collection');
+            throw new \InvalidArgumentException('You can only add Repository object to this collection');
         }
 
         parent::add($repository);
