@@ -10,7 +10,11 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function testItShouldInstanciateTheFactory()
     {
-        $repositoryInterface = $this->mock()
+        $repositoryInterface = $this->mock('\PHPCR\RepositoryInterface')
+            ->login()
+            ->getDescriptorKeys()
+            ->isStandardDescriptor()
+            ->getDescriptor()
             ->fooBar()
             ->new();
 

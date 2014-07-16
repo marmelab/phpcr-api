@@ -90,9 +90,8 @@ class NodeManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testItShouldCallGetPropertyAndThenRemoveAndFinallySave()
     {
-        $property = $this->mock()
-            ->remove($this->once())
-            ->new();
+        $property = $this->mock('\PHPCR\PropertyInterface', null);
+        $property->mock()->remove($this->once());
 
         $node = $this->mock('\PHPCRAPI\PHPCR\Node')
             ->getProperty($property, $this->once())
