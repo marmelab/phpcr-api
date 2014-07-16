@@ -18,7 +18,8 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             ->fooBar()
             ->new();
 
-        $factoryInstance = $this->mock()
+        $factoryInstance = $this->mock('\PHPCR\RepositoryFactoryInterface')
+            ->getConfigurationKeys()
             ->getRepository($repositoryInterface)
             ->new();
 
